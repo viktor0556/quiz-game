@@ -26,7 +26,8 @@ const Quiz = () => {
       setCurrentQuestionIndex(nextQuestionIndex);
       setTimeLeft(10);
     } else {
-      setGameOver(true);
+      alert(`Game over! Your score is ${score}`);
+      resetQuiz();
     }
   };
 
@@ -49,19 +50,22 @@ const Quiz = () => {
     if (params.toString()) url += `?${params.toString()}`;
 
     fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+      .then(response => response.json())
+      .then(data => {
+        setQuestions(data);
+        setCurrentQuestionIndex(0);
       })
-      .then(data => setQuestions(data))
       .catch(error => console.error('Error fetching questions:', error));
   };
 
   const startQuiz = ({ category, difficulty }) => {
     setSettings({ category, difficulty });
     setTimeLeft(10);
+  };
+
+  const resetQuiz = () => {
+    setSettings(null);
+    setQuestions([]);
     setCurrentQuestionIndex(0);
     setScore(0);
     setGameOver(false);
@@ -76,7 +80,7 @@ const Quiz = () => {
   }
 
   if (gameOver) {
-    return <div>Game over! Your score is {score}</div>;
+    return <div>Your score is {score}</div>;
   }
 
   if (currentQuestionIndex >= questions.length) {
@@ -86,9 +90,9 @@ const Quiz = () => {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="container">
-      <h2 className="question">{currentQuestion.question}</h2>
-      <div className="time-left">Time left: {timeLeft} seconds</div>
+    <div className='container'>
+      <h2 className='question'>{currentQuestion.question}</h2>
+      <div className='time-left'>Time left: {timeLeft} seconds</div>
       {currentQuestion.answers.map((answer, index) => (
         <button key={index} onClick={() => handleAnswer(answer.isCorrect)}>
           {answer.text}
