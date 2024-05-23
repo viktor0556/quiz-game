@@ -19,5 +19,5 @@ const Question = sequelize.define('Question', {
     allowNull: false,
   },
 });
-
+ 
 module.exports = Question;
