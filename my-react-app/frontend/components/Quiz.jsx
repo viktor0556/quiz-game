@@ -78,10 +78,6 @@ const Quiz = () => {
     return <div>Loading...</div>;
   }
 
-  if (currentQuestionIndex >= questions.length) {
-    return <div>Your score is {score}</div>;
-  }
-
   if (showGameOver) {
     return (
       <div className='game-over'>
