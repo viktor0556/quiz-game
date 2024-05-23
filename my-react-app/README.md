@@ -24,5 +24,5 @@ PORT=yourport
 Please create an .env file with the above data and place it in the root of your project. It is important not to share or publish this file as it may contain sensitive data.
 
 ## Start server
-start backend:node server.js
+start backend:node server.js, 
 start frontend:npm run dev
