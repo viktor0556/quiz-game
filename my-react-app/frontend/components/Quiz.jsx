@@ -7,9 +7,15 @@ const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(10);
-  const [gameOver, setGameOver] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(5);
   const [settings, setSettings] = useState(null);
+  const [showGameOver, setShowGameOver] = useState(false);
+
+  const startQuiz = ({ category, difficulty }) => {
+    setSettings({ category, difficulty });
+    setTimeLeft(5);
+    setShowGameOver(false);
+  };
 
   useEffect(() => {
     if (settings) {
@@ -24,23 +30,22 @@ const Quiz = () => {
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
-      setTimeLeft(10);
-    } else {
-      alert(`Game over! Your score is ${score}`);
-      resetQuiz();
+      setTimeLeft(5);
+    } else if (currentQuestionIndex < questions.length) {
+      setShowGameOver(true)
     }
   };
 
   useEffect(() => {
-    if (timeLeft > 0 && !gameOver) {
+    if (timeLeft > 0 && !showGameOver) {
       const timer = setTimeout(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
       return () => clearTimeout(timer);
-    } else if (timeLeft === 0 && !gameOver) {
+    } else if (timeLeft === 0 && !showGameOver) {
       handleAnswer(false);
     }
-  }, [timeLeft, gameOver]);
+  }, [timeLeft, showGameOver]);
 
   const fetchQuestions = (category, difficulty) => {
     let url = 'http://localhost:8080/api/questions';
@@ -58,17 +63,11 @@ const Quiz = () => {
       .catch(error => console.error('Error fetching questions:', error));
   };
 
-  const startQuiz = ({ category, difficulty }) => {
-    setSettings({ category, difficulty });
-    setTimeLeft(10);
-  };
-
   const resetQuiz = () => {
     setSettings(null);
     setQuestions([]);
     setCurrentQuestionIndex(0);
     setScore(0);
-    setGameOver(false);
   };
 
   if (!settings) {
@@ -79,12 +78,17 @@ const Quiz = () => {
     return <div>Loading...</div>;
   }
 
-  if (gameOver) {
+  if (currentQuestionIndex >= questions.length) {
     return <div>Your score is {score}</div>;
   }
 
-  if (currentQuestionIndex >= questions.length) {
-    return <div>Your score is {score}</div>;
+  if (showGameOver) {
+    return (
+      <div className='game-over'>
+        <h2>Game Over! Your score is {score}</h2>
+        <button onClick={resetQuiz}>Start New Game</button>
+      </div>
+    )
   }
 
   const currentQuestion = questions[currentQuestionIndex];

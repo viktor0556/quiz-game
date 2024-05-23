@@ -5,6 +5,22 @@ body {
   padding: 0;
 }
 
+.game-over {
+  text-align: center;
+  padding: 20px;
+}
+
+.game-over h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.game-over button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .container{
   max-width: 600px;;
   margin: 0 auto;
