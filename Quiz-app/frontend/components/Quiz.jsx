@@ -25,7 +25,7 @@ const Quiz = () => {
 
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(prevScore => prevScore + 1);
     }
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
@@ -50,9 +50,15 @@ const Quiz = () => {
   const fetchQuestions = (category, difficulty) => {
     let url = 'http://localhost:8080/api/questions';
     const params = new URLSearchParams();
-    if (category) params.append('category', category);
-    if (difficulty) params.append('difficulty', difficulty);
-    if (params.toString()) url += `?${params.toString()}`;
+    if (category) {
+      params.append('category', category);
+    }
+    if (difficulty) {
+      params.append('difficulty', difficulty);
+    } 
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
 
     fetch(url)
       .then(response => response.json())
