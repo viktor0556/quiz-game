@@ -21,6 +21,8 @@ const QuizSetting = ({ onStart }) => {
             <option value="General Knowledge">General Knowledge</option>
             <option value="Science">Science</option>
             <option value="History">History</option>
+            <option value="Literature">Literature</option>
+            <option value="Physics">Physics</option>
           </select>
         </label>
       </div>
