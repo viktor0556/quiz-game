@@ -9,7 +9,9 @@ Currently, two official plugins are available:
 
 ## Built with
 
-- [React](http://react.dev)
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev)
+- [Node](https://nodejs.org/en)
 
 ## Development
 
@@ -17,7 +19,6 @@ To get a local copy of the code, clone it using git:
 
 ```
 git clone https://github.com/viktor0556/quiz-game.git
-cd quiz-app
 ```
 
 Install dependencies:
