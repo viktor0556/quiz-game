@@ -104,7 +104,6 @@ const Quiz = () => {
           {answer.text}
         </button>
       ))}
-      <h2>Your Score: {score}</h2>
     </div>
   );
 };
