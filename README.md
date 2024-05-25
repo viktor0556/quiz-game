@@ -9,9 +9,12 @@ Currently, two official plugins are available:
 
 ![Képernyőkép ekkor: 2024-05-25 18-19-17](https://github.com/viktor0556/quiz-game/assets/134110891/50386036-6136-4a76-94fa-3695605be597)
 
-![Képernyőkép ekkor: 2024-05-25 18-19-26](https://github.com/viktor0556/quiz-game/assets/134110![Kép![Képernyőkép ekkor: 2024-05-25 18-20-01](https://github.com/viktor0556/quiz-game/assets/134110891/f920addb-cea9-4a28-9abd-342ebec7e648)
-ernyőkép ekkor: 2024-05-25 18-19-31](https://github.com/viktor0556/quiz-game/assets/134110891/bc3b9f21-f605-44d5-a60d-6a890b4be29c)
-891/0ccb3d51-d710-4a54-aca8-407317810d14)
+![Képernyőkép ekkor: 2024-05-25 18-19-26](https://github.com/viktor0556/quiz-game/assets/134110891/d86a94b5-282c-442c-b780-86921cac59ea)
+
+![Képernyőkép ekkor: 2024-05-25 18-19-31](https://github.com/viktor0556/quiz-game/assets/134110891/f4341d95-9e21-476f-b12c-a20a575b76b5)
+
+
+![Képernyőkép ekkor: 2024-05-25 18-20-01](https://github.com/viktor0556/quiz-game/assets/134110891/0491cb21-83c3-4e46-9c2c-866a354f8817)
 
 ## Built with
 
