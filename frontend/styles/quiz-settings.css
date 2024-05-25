@@ -1,0 +1,57 @@
+body{
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.settings-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+
+.title{
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+label{
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.category-select,
+.difficulty-select{
+  width: 200px;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  cursor: pointer;
+  margin-left: 5px;
+  text-align: center;
+}
+
+
+.start-button{
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.start-button:hover{
+  background-color: #0056b3;
+}

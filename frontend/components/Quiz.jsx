@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import '../Quiz.css';
-import '../Quiz-animation.css';
+import '../styles/Quiz.css';
+import '../styles/Quiz-animation.css';
 import QuizSettings from './QuizSetting'
 
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [settings, setSettings] = useState(null);
   const [showGameOver, setShowGameOver] = useState(false);
 
   const startQuiz = ({ category, difficulty }) => {
     setSettings({ category, difficulty });
-    setTimeLeft(5);
+    fetchQuestions({ category, difficulty });
     setShowGameOver(false);
   };
 
@@ -30,7 +30,7 @@ const Quiz = () => {
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
-      setTimeLeft(5);
+      setTimeLeft(getTimeForDifficulty(questions[nextQuestionIndex].difficulty));
     } else if (currentQuestionIndex < questions.length) {
       setShowGameOver(true)
     }
@@ -65,8 +65,24 @@ const Quiz = () => {
       .then(data => {
         setQuestions(data);
         setCurrentQuestionIndex(0);
+        if (data.length > 0) {
+          setTimeLeft(getTimeForDifficulty(data[0].difficulty));
+        }
       })
       .catch(error => console.error('Error fetching questions:', error));
+  };
+
+  const getTimeForDifficulty = (difficulty) => {
+    switch (difficulty) {
+      case 'Easy':
+        return 5;
+      case 'Medium':
+        return 10;
+      case 'Hard':
+        return 15;
+      default:
+        return 10;
+    }
   };
 
   const resetQuiz = () => {
@@ -104,6 +120,7 @@ const Quiz = () => {
           {answer.text}
         </button>
       ))}
+      <h1 >Current score: {score}</h1>
     </div>
   );
 };

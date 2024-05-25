@@ -303,7 +303,10 @@ app.get("/api/questions", async (req, res) => {
   if (difficulty) where.difficulty = difficulty;
 
   try {
-    const questions = await Question.findAll({ where });
+    const questions = await Question.findAll({ 
+      where,
+      order: sequelize.literal('random()')
+    });
     res.json(questions);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch questions" });

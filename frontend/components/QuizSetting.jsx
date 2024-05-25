@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../styles/quiz-settings.css'
 
 const QuizSetting = ({ onStart }) => {
   const [category, setCategory] = useState('');
@@ -9,12 +10,12 @@ const QuizSetting = ({ onStart }) => {
   };
 
   return (
-    <div>
-      <h2>Quiz Settings</h2>
+    <div className='settings-container'>
+      <h2 className='title'>Quiz Settings</h2>
       <div>
         <label>
           Category:
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select className='category-select' value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="">Any</option>
             <option value="Math">Mathematica</option>
             <option value="Geography">Geography</option>
@@ -29,15 +30,15 @@ const QuizSetting = ({ onStart }) => {
       <div>
         <label>
           Difficulty:
-          <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+          <select className='difficulty-select' value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
             <option value="">Any</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">Easy (5 sec)</option>
+            <option value="Medium">Medium (10 sec)</option>
+            <option value="Hard">Hard (15 sec)</option>
           </select>
         </label>
       </div>
-      <button onClick={handleStart}>Start Quiz</button>
+      <button className='start-button' onClick={handleStart}>Start Quiz</button>
     </div>
   )
 }
