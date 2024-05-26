@@ -32,13 +32,13 @@ const BackgroundMusic = () => {
   }, [volume, sound]);
 
   return (
-    <div>
-      <button onClick={isPlaying ? handleStop : handlePlay}>
+    <div className='music-container'>
+      <button  onClick={isPlaying ? handleStop : handlePlay}>
         {isPlaying ? 'Stop Music' : 'Play Music'}
       </button>
       <div>
-        <label>Volume: {Math.round(volume * 100)}</label>
-        <input 
+        <label className='volume-label'>Volume: {Math.round(volume * 100)}</label>
+        <input className='volume-input' 
         type="range"
         min="0"
         max="1"

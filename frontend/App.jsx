@@ -8,6 +8,7 @@ function App() {
 
   return (
     <>
+    <span className='beta-label'>Beta</span>
     <Router>
       <BackgroundMusic />
       <Routes>

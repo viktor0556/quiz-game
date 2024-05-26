@@ -9,7 +9,7 @@ html, body {
   justify-content: center; 
   align-items: center;  
   text-align: center;   
-  height: 100vh;          
+  height: 0vh;          
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
@@ -31,4 +31,24 @@ html, body {
 
 .quiz-link:hover{
   background-color: #0056b3;
+}
+
+.beta-label {
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.volume-label,
+.volume-input {
+  margin-left: 10px;
+}
+
+.volume-label {
+  margin-top: 5px;
+}
+
+.volume-input {
+  cursor: pointer;
 }
