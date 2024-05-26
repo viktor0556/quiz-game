@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Quiz.css';
 import '../styles/Quiz-animation.css';
-import QuizSettings from './QuizSetting'
+import QuizSettings from './QuizSetting';
+import clickSound from '../assets/click.mp3';
+import rightSound from '../assets/goodAnswer.mp3';
+import wrongSound from '../assets/errorAnswer.mp3';
+import useSound from 'use-sound';
 
 const Quiz = () => {
+
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
   const [settings, setSettings] = useState(null);
   const [showGameOver, setShowGameOver] = useState(false);
-
-  const startQuiz = ({ category, difficulty }) => {
-    setSettings({ category, difficulty });
-    fetchQuestions({ category, difficulty });
-    setShowGameOver(false);
-  };
+  const [playClick] = useSound(clickSound);
+  const [playClickGoodAnswer] = useSound(rightSound);
+  const [playClickBadAnswer] = useSound(wrongSound);
 
   useEffect(() => {
     if (settings) {
@@ -23,9 +25,20 @@ const Quiz = () => {
     }
   }, [settings]);
 
+  const startQuiz = ({ category, difficulty }) => {
+    setSettings({ category, difficulty });
+    fetchQuestions({ category, difficulty });
+    setShowGameOver(false);
+    playClick();
+  };
+
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
       setScore(prevScore => prevScore + 1);
+      playClickGoodAnswer();
+    }
+    else if (!isCorrect) {
+      playClickBadAnswer();
     }
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
@@ -33,6 +46,7 @@ const Quiz = () => {
       setTimeLeft(getTimeForDifficulty(questions[nextQuestionIndex].difficulty));
     } else if (currentQuestionIndex < questions.length) {
       setShowGameOver(true)
+      playClick();
     }
   };
 
@@ -90,6 +104,7 @@ const Quiz = () => {
     setQuestions([]);
     setCurrentQuestionIndex(0);
     setScore(0);
+    playClick();
   };
 
   if (!settings) {
